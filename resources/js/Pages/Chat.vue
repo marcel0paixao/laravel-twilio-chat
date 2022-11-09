@@ -1,8 +1,15 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
-import ChatLayout from '@/Layouts/ChatLayout.vue';
-import ChatRoom from './Chat/ChatRoom.vue';
-import UsersList from './Chat/UsersList.vue';
+    import AppLayout from '@/Layouts/AppLayout.vue';
+    import ChatLayout from '@/Layouts/ChatLayout.vue';
+    import { ref, onMounted } from 'vue';
+    import ChatRoom from './Chat/ChatRoom.vue';
+    import UsersList from './Chat/UsersList.vue';
+
+    const activeUser = ref(null);
+
+    const defineActive = (user) => {
+        activeUser.value = user;
+    }
 </script>
 
 <template>
@@ -17,8 +24,8 @@ import UsersList from './Chat/UsersList.vue';
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <ChatLayout>
-                        <UsersList />
-                        <ChatRoom v-if="false" />
+                        <UsersList @defineActive="defineActive" :activeUser="activeUser" />
+                        <ChatRoom v-if="activeUser" :activeUser="activeUser" />
                     </ChatLayout>
                 </div>
             </div>
