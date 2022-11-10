@@ -1,7 +1,7 @@
 <script setup>
     import AppLayout from '@/Layouts/AppLayout.vue';
     import ChatLayout from '@/Layouts/ChatLayout.vue';
-    import { ref, onMounted } from 'vue';
+    import { ref, watch } from 'vue';
     import ChatRoom from './Chat/ChatRoom.vue';
     import UsersList from './Chat/UsersList.vue';
 

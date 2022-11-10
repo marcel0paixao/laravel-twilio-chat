@@ -50,14 +50,11 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $message = new Message([
+        Message::create([
             'from' => Auth::id(),
             'to' => $request->to,
-            'message' => $request->message
+            'message' => strval($request->message)
         ]);
-        $message->save();
-
-        Event::dispatch(new SendMessage($message, $message->to));
 
         return redirect()->back();
     }
